@@ -1,33 +1,37 @@
-Certainly! Here’s how you can comment out a line of code in Node.js (JavaScript).  
-For example, if you have:
+Here’s a clean, production-ready starter for `src/index.js`:
 
 ```js
-const http = require('http');
-const port = 3000;
+// src/index.js
 
-// const extra = require('extra-module');  // <-- Error-causing line commented out
+require('dotenv').config();
+const express = require('express');
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World\n');
+const app = express();
+
+// Middleware
+app.use(express.json());
+
+// Simple health check route
+app.get('/', (req, res) => {
+  res.json({ status: 'ok' });
 });
 
-server.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/`);
+// Start server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  // eslint-disable-next-line no-console
+  console.log(`Server is running on port ${port}`);
 });
 ```
 
-**What you need to do:**
-- Use `//` before the problematic line to comment it out.
+**Instructions:**
 
-**Why:**  
-This prevents Node.js from executing the line, avoiding the error.
+1. Be sure to create a `src` directory in your project root.
+2. Place this code in `src/index.js`.
+3. Install necessary dependencies:
 
-**Summary:**
-Just add `//` at the beginning of the extra line like this:
-
-```js
-// your problematic or extra code here
+```bash
+npm install express dotenv
 ```
 
-**If you want, paste your server code here and I will comment the extra line(s) for you.**
+4. (Optional) Add a `.env` file at the project root with `PORT=3000` or your desired port.
