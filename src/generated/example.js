@@ -1,33 +1,41 @@
-Certainly! Here’s how you can comment out a line of code in Node.js (JavaScript).  
-For example, if you have:
+Sure! Here is a clean, production-ready `index.js` file for your described scenario, assuming your project's structure is as follows:
+
+```
+your-repo/
+├── src/
+│   └── index.js
+├── package.json
+...
+```
+
+### **src/index.js**
 
 ```js
-const http = require('http');
-const port = 3000;
+const express = require('express');
 
-// const extra = require('extra-module');  // <-- Error-causing line commented out
+const app = express();
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World\n');
+app.get('/home', (req, res) => {
+  res.send('welcome to home');
 });
 
-server.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/`);
+const PORT = 4001;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 ```
 
-**What you need to do:**
-- Use `//` before the problematic line to comment it out.
+---
 
-**Why:**  
-This prevents Node.js from executing the line, avoiding the error.
+**Notes:**
 
-**Summary:**
-Just add `//` at the beginning of the extra line like this:
+- Ensure you have installed `express` by running:  
+  ```
+  npm install express
+  ```
+- To run your server:
+  ```
+  node src/index.js
+  ```
 
-```js
-// your problematic or extra code here
-```
-
-**If you want, paste your server code here and I will comment the extra line(s) for you.**
+This code creates an Express server, defines the `/home` route, and starts the server on port 4001.
